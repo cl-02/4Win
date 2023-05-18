@@ -1,0 +1,6 @@
+DummyTest.DummyTest1 1 0.00379375
+TestingTestClass.TestClassDefaultConstructor 1 0.00307967
+TestingTestClass.TestClassConstructorSettingMember 1 0.00423921
+TestingTestClass.TestClassGetterSetter 1 0.00381812
+TestingTestClass.TestClassPrint 1 0.00424775
+---
