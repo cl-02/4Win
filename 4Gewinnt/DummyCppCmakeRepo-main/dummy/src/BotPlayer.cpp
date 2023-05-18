@@ -11,11 +11,6 @@ int BotPlayer::getBotsColumn() const
     return m_setBotsColumn;
 }
 
-void BotPlayer::copyField(int row, int column)
-{
-    m_fieldCopy[row][column] = 1;
-}
-
 void BotPlayer::setPoints()
 {
     if(m_fieldCopy[m_setBotsRow+1][m_setBotsColumn+1]==0)

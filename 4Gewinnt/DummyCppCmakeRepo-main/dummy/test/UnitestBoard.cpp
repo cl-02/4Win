@@ -24,13 +24,20 @@ TEST(TestingTestClass, TestRowWin)
     // WHEN
     FourWinsSetup board;
     board.initField();
-    for(int i= 0; i<4;i++)
-    {
-        board.setGamePoints(1,i);
-    }
+
+
+        board.setGamePoints(0);
+        board.setGamePoints(0);
+        board.setGamePoints(1);
+        board.setGamePoints(1);
+        board.setGamePoints(2);
+        board.setGamePoints(2);
+        board.setGamePoints(3);
+        board.setGamePoints(2);
+
 
     // THEN
-    board.checkRowWin(1);
+    board.checkRowWin(5);
     EXPECT_EQ(true, board.isPlayerOWin());
 }
 TEST(TestingTestClass, TestColumnWin)
@@ -38,13 +45,21 @@ TEST(TestingTestClass, TestColumnWin)
     // WHEN
     FourWinsSetup board;
     board.initField();
-    for(int i= 0; i<4;i++)
-    {
-        board.setGamePoints(i,2);
-    }
+
+    board.setGamePoints(1);
+    board.setGamePoints(0);
+
+    board.setGamePoints(1);
+    board.setGamePoints(2);
+
+    board.setGamePoints(1);
+    board.setGamePoints(0);
+
+    board.setGamePoints(1);
+    board.setGamePoints(0);
 
     // THEN
-    board.checkColumnWin(2);
+    board.checkColumnWin(1);
     EXPECT_EQ(true,board.isPlayerOWin());
 }
 
@@ -53,14 +68,26 @@ TEST(TestingTestClass, TestLeftDiagWin)
     // WHEN
     FourWinsSetup board;
     board.initField();
+    board.setGamePoints(0);
+    board.setGamePoints(1);
 
-    board.setGamePoints(0,0);
-    board.setGamePoints(1,1);
-    board.setGamePoints(2,2);
-    board.setGamePoints(3,3);
+    board.setGamePoints(1);
+    board.setGamePoints(2);
+
+    board.setGamePoints(2);
+    board.setGamePoints(3);
+
+    board.setGamePoints(2);
+    board.setGamePoints(3);
+
+    board.setGamePoints(1);
+    board.setGamePoints(3);
+
+    board.setGamePoints(3);
+    board.setGamePoints(3);
 
     // THEN
-    board.checkLeftDiagWin();
+    board.checkLeftBottomToTopDiagWin();
     EXPECT_EQ(true,board.isPlayerOWin());
 }
 
@@ -70,13 +97,13 @@ TEST(TestingTestClass, TestRightDiagWin)
     FourWinsSetup board;
     board.initField();
 
-    board.setGamePoints(2,4);
-    board.setGamePoints(3,3);
-    board.setGamePoints(4,2);
-    board.setGamePoints(5,1);
+    board.setGamePoints(4);
+    board.setGamePoints(3);
+    board.setGamePoints(2);
+    board.setGamePoints(1);
 
     // THEN
-    board.checkRightDiagWin();
+    board.checkLeftTopToBottomDiagWin();
     EXPECT_EQ(true,board.isPlayerOWin());
 }
 
@@ -85,11 +112,11 @@ TEST(TestingTestClass, TestIsPlaceEmpty)
     // WHEN
     FourWinsSetup board;
     board.initField();
-    board.setGamePoints(2,4);
+    board.setGamePoints(4);
 
     // THEN
-    EXPECT_EQ(false,   board.isPlaceEmpty(2,4));
-    EXPECT_EQ(true,   board.isPlaceEmpty(0,4));
+    EXPECT_EQ(false,   board.isPlaceEmpty(4));
+    EXPECT_EQ(true,   board.isPlaceEmpty(4));
 }
 
 TEST(TestingTestClass, TestIsInputValid)
@@ -98,8 +125,8 @@ TEST(TestingTestClass, TestIsInputValid)
     FourWinsSetup board;
     board.initField();
     // THEN
-    EXPECT_EQ(true,   board.isInputValid(2,4));
+    EXPECT_EQ(true,   board.isInputValid(4));
 
-   board.setGamePoints(2,4);
-    EXPECT_EQ(false,   board.isInputValid(2,4));
+   board.setGamePoints(2);
+    EXPECT_EQ(false,   board.isInputValid(2));
 }

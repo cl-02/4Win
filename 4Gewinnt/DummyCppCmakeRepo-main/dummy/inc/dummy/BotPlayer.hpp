@@ -9,7 +9,7 @@ class BotPlayer
 {
 public:
     BotPlayer()=default;
-    void copyField(int row,int column);
+    void copyField(); /*todo: set do bot check, if field is empty */
     void setPoints();
     bool isColumnWinNear(int column);
 

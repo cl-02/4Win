@@ -21,7 +21,7 @@ void Player::enterRowAndColumn()
     cin >> row;
     cout <<"Player" << m_name << "enter column please" << endl;
     cin >> column;
-    if(board.isInputValid(row,column))
+    if(board.isInputValid(column))
     {
         m_row = row;
         m_column = column;

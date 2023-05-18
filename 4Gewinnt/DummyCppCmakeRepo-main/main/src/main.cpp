@@ -23,7 +23,7 @@ int main()
         while ((!board.isPlayerOWin()) && (!board.isPlayerXWin()) && (!board.isBoardFull()))
         {
             board.printField();
-            board.enterRowAndColumn();
+            board.enterColumn();
             board.isBoardFull();
             board.getWinner();
         }
@@ -37,13 +37,13 @@ int main()
             board.printField();
             if(board.getPlayersTurn() == 0)
             {
-                board.enterRowAndColumn();
-                bot.copyField(board.getPlayersRow(),board.getPlayersColumn());
+                board.enterColumn();
+               // bot.copyField(board.getPlayersColumn());
             }
             else if(board.getPlayersTurn() == 1)
             {
                 bot.setPoints();
-                board.setGamePoints(bot.getBotsRow(),bot.getBotsColumn());
+                board.setGamePoints(bot.getBotsColumn());
 
             }
             board.isBoardFull();
@@ -51,8 +51,5 @@ int main()
         }
         board.printField();
     }
-
-
-
     return 0;
 }

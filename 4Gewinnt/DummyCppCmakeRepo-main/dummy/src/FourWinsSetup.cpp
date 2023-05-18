@@ -31,15 +31,17 @@ char FourWinsSetup::getFieldAtPosition(int row, int column)
 
 void FourWinsSetup::setGamePoints(int column)
 {
-    if(isPlaceEmpty(row+1,column))
+    if(isPlaceEmpty(column))
     {
         switch(m_playersTurn)
         {
         case 0:
-            m_field[row+1][column] = m_symbolPlayerO;
+            m_field[getNextFreeRow(column)][column] = m_symbolPlayerO;
+            setRow(column);
             break ;
         case 1:
-            m_field[row+1][column] = m_symbolPlayerX;
+            m_field[getNextFreeRow(column)][column] = m_symbolPlayerX;
+            setRow(column);
             break ;
         default:
             break ;
@@ -111,37 +113,15 @@ void FourWinsSetup::checkColumnWin(int column)
                 m_playerXWin = true;
             }
         }
-    }
-}
-void FourWinsSetup::checkLeftDiagWin()
-{
-    for(int i=0; i < m_rowLenght; i++)
-    {
-        for(int j=0; j < m_columnLenght; j++)
-        {
-            if(m_field[i][j] == m_symbolPlayerO &&
-                m_field[i+1][j+1] == m_symbolPlayerO &&
-                m_field[i+2][j+2] == m_symbolPlayerO &&
-                m_field[i+3][j+3] == m_symbolPlayerO )
-            {
-                m_playerOWin = true;
-            }
-            if(m_field[i][j] == m_symbolPlayerX &&
-                m_field[i+1][j+1] == m_symbolPlayerX &&
-                m_field[i+2][j+2] == m_symbolPlayerX &&
-                m_field[i+3][j+3] == m_symbolPlayerX )
-            {
-                m_playerXWin = true;
-            }
-        }
-    }
-}
 
-void FourWinsSetup::checkRightDiagWin()
+
+    }
+}
+void FourWinsSetup::checkLeftBottomToTopDiagWin()
 {
-    for(int i=m_rowLenght;i >0;i--)
+    for(int i= m_rowLenght-1;i >= 3;i--)
     {
-        for(int j =0; j<m_columnLenght;j++)
+        for(int j = 0;j <= m_columnLenght-4;j++)
         {
             if(m_field[i][j] == m_symbolPlayerO &&
                 m_field[i-1][j+1] == m_symbolPlayerO &&
@@ -161,16 +141,143 @@ void FourWinsSetup::checkRightDiagWin()
     }
 }
 
+void FourWinsSetup::checkLeftTopToBottomDiagWin()
+{
+    for(int i=0;i <=m_rowLenght-4;i++)
+    {
+        for(int j =0; j<=m_columnLenght-4;j++)
+        {
+            if(m_field[i][j] == m_symbolPlayerO &&
+                m_field[i+1][j+1] == m_symbolPlayerO &&
+                m_field[i+2][j+2] == m_symbolPlayerO &&
+                m_field[i+3][j+3] == m_symbolPlayerO )
+            {
+                m_playerOWin = true;
+            }
+            if(m_field[i][j] == m_playerXWin &&
+                m_field[i+1][j+1] == m_playerXWin &&
+                m_field[i+2][j+2] == m_playerXWin &&
+                m_field[i+3][j+3] == m_playerXWin )
+            {
+                m_playerXWin = true;
+            }
+        }
+    }
+}
+
+void FourWinsSetup::checkVertical()
+{
+    for(int i= 0;i<=m_rowLenght-4;i++)
+    {
+        for(int j=0;j<m_columnLenght;j++)
+        {
+            if(m_field[i][j] == m_symbolPlayerO &&
+                m_field[i+1][j] == m_symbolPlayerO &&
+                m_field[i+2][j] == m_symbolPlayerO &&
+                m_field[i+3][j] == m_symbolPlayerO )
+            {
+                m_playerOWin = true;
+            }
+            if(m_field[i][j] == m_playerXWin &&
+                m_field[i+1][j] == m_playerXWin &&
+                m_field[i+2][j] == m_playerXWin &&
+                m_field[i+3][j] == m_playerXWin )
+            {
+                m_playerXWin = true;
+            }
+        }
+    }
+}
+void FourWinsSetup::checkHori()
+{
+    for(int i= 0;i < m_rowLenght;i++)
+    {
+        for(int j=0;j<m_columnLenght-4;j++)
+        {
+            if(m_field[i][j] == m_symbolPlayerO &&
+                m_field[i][j+1] == m_symbolPlayerO &&
+                m_field[i][j+2] == m_symbolPlayerO &&
+                m_field[i][j+3] == m_symbolPlayerO )
+            {
+                m_playerOWin = true;
+            }
+            if(m_field[i][j] == m_playerXWin &&
+                m_field[i][j+1] == m_playerXWin &&
+                m_field[i][j+2] == m_playerXWin &&
+                m_field[i][j+3] == m_playerXWin )
+            {
+                m_playerXWin = true;
+            }
+        }
+    }
+}
+
+void FourWinsSetup::setRow(int column)
+{
+    switch (column)
+    {
+    case 0:
+        m_rowPosition0 --;
+        break ;
+    case 1:
+        m_rowPosition1 --;
+        break ;
+    case 2:
+        m_rowPosition2 --;
+        break ;
+    case 3:
+        m_rowPosition3 --;
+        break ;
+    case 4:
+        m_rowPosition4 --;
+        break ;
+    case 5:
+        m_rowPosition5 --;
+        break ;
+    case 6:
+        m_rowPosition6 --;
+        break ;
+    }
+}
+int FourWinsSetup::getNextFreeRow(int column)
+{
+    int rowCntr =0;
+    switch (column)
+    {
+    case 0:
+        rowCntr = m_rowPosition0 -1;
+        break ;
+    case 1:
+        rowCntr = m_rowPosition1 -1;
+        break ;
+    case 2:
+        rowCntr = m_rowPosition2 -1;
+        break ;
+    case 3:
+        rowCntr = m_rowPosition3 -1;
+        break ;
+    case 4:
+        rowCntr = m_rowPosition4 -1;
+        break ;
+    case 5:
+        rowCntr = m_rowPosition5 -1;
+        break ;
+    case 6:
+        rowCntr = m_rowPosition6 -1;
+        break ;
+    }
+    return rowCntr;
+
+}
+
 bool FourWinsSetup::isPlaceEmpty(int column)
 {
+
     bool isPlaceEmpty = false;
-    for(int i=6;i>0;i--)
+
+    if(m_field[getNextFreeRow(column)][column]== emptyPlace)
     {
-        m
-    }
-    if(m_field[row][column]!=emptyPlace)
-    {
-        isPlaceEmpty = false;
+        isPlaceEmpty = true;
     }
     return isPlaceEmpty;
 }
@@ -185,17 +292,17 @@ void FourWinsSetup::printField()
     cout<<endl;
 }
 
-bool FourWinsSetup::isInputValid(int row, int column)
+bool FourWinsSetup::isInputValid( int column)
 {
     bool isInputValid = false;
-    if((row < m_rowLenght) && (column < m_columnLenght) && isPlaceEmpty(row,column))
+    if((column < m_columnLenght) && isPlaceEmpty(column))
     {
         isInputValid = true;
     }
     return isInputValid;
 }
 
-void FourWinsSetup::enterRowAndColumn()
+void FourWinsSetup::enterColumn()
 {
     int name = 0;
     if(m_playersTurn==0)
@@ -207,19 +314,18 @@ void FourWinsSetup::enterRowAndColumn()
         name = 2;
     }
 
-    cout <<"Player:" << name << " enter row please" << endl;
-    cin >> m_playersRow;
+
     cout <<"Player:" << name << " enter column please" << endl;
     cin >> m_playersColumn;
-    if(isInputValid(m_playersRow,m_playersColumn))
+    if(isInputValid(m_playersColumn))
     {
-        setGamePoints(m_playersRow,m_playersColumn);
+        setGamePoints(m_playersColumn);
 
     }
     else
     {
         cout <<"ERROR enter row and column again...."<< endl;
-        enterRowAndColumn();
+        enterColumn();
 
     }
 }
@@ -234,8 +340,10 @@ void FourWinsSetup::checkAllWinConditions()
     {
         checkRowWin(i);
     }
-    checkLeftDiagWin();
-    checkRightDiagWin();
+    checkLeftBottomToTopDiagWin();
+    checkLeftTopToBottomDiagWin();
+    checkVertical();
+    checkHori();
 }
 
 void FourWinsSetup::getWinner()
@@ -267,7 +375,4 @@ int FourWinsSetup::getPlayersColumn() const
 {
     return m_playersColumn;
 }
-int FourWinsSetup::getPlayersRow() const
-{
-    return m_playersRow;
-}
+
