@@ -25,42 +25,19 @@ TEST(TestingTestClass, TestRowWin)
     FourWinsSetup board;
     board.initField();
 
-
-        board.setGamePoints(0);
-        board.setGamePoints(0);
-        board.setGamePoints(1);
-        board.setGamePoints(1);
-        board.setGamePoints(2);
-        board.setGamePoints(2);
-        board.setGamePoints(3);
-        board.setGamePoints(2);
+    board.setGameCoins(0);
+        board.setGameCoins(0);
+        board.setGameCoins(1);
+        board.setGameCoins(1);
+        board.setGameCoins(2);
+        board.setGameCoins(2);
+        board.setGameCoins(3);
+        board.setGameCoins(2);
 
 
     // THEN
     board.checkRowWin(5);
     EXPECT_EQ(true, board.isPlayerOWin());
-}
-TEST(TestingTestClass, TestColumnWin)
-{
-    // WHEN
-    FourWinsSetup board;
-    board.initField();
-
-    board.setGamePoints(1);
-    board.setGamePoints(0);
-
-    board.setGamePoints(1);
-    board.setGamePoints(2);
-
-    board.setGamePoints(1);
-    board.setGamePoints(0);
-
-    board.setGamePoints(1);
-    board.setGamePoints(0);
-
-    // THEN
-    board.checkColumnWin(1);
-    EXPECT_EQ(true,board.isPlayerOWin());
 }
 
 TEST(TestingTestClass, TestLeftDiagWin)
@@ -68,39 +45,39 @@ TEST(TestingTestClass, TestLeftDiagWin)
     // WHEN
     FourWinsSetup board;
     board.initField();
-    board.setGamePoints(0);
-    board.setGamePoints(1);
+    board.setGameCoins(0);
+    board.setGameCoins(1);
 
-    board.setGamePoints(1);
-    board.setGamePoints(2);
+    board.setGameCoins(1);
+    board.setGameCoins(2);
 
-    board.setGamePoints(2);
-    board.setGamePoints(3);
+    board.setGameCoins(2);
+    board.setGameCoins(3);
 
-    board.setGamePoints(2);
-    board.setGamePoints(3);
+    board.setGameCoins(2);
+    board.setGameCoins(3);
 
-    board.setGamePoints(1);
-    board.setGamePoints(3);
+    board.setGameCoins(1);
+    board.setGameCoins(3);
 
-    board.setGamePoints(3);
-    board.setGamePoints(3);
+    board.setGameCoins(3);
+    board.setGameCoins(3);
 
     // THEN
     board.checkLeftBottomToTopDiagWin();
     EXPECT_EQ(true,board.isPlayerOWin());
 }
 
-TEST(TestingTestClass, TestRightDiagWin)
+TEST(TestingTestClass, TestRightDiagWinLeftTopToBottom)
 {
     // WHEN
     FourWinsSetup board;
     board.initField();
 
-    board.setGamePoints(4);
-    board.setGamePoints(3);
-    board.setGamePoints(2);
-    board.setGamePoints(1);
+    board.setGameCoins(4);
+    board.setGameCoins(3);
+    board.setGameCoins(2);
+    board.setGameCoins(1);
 
     // THEN
     board.checkLeftTopToBottomDiagWin();
@@ -112,7 +89,7 @@ TEST(TestingTestClass, TestIsPlaceEmpty)
     // WHEN
     FourWinsSetup board;
     board.initField();
-    board.setGamePoints(4);
+    board.setGameCoins(4);
 
     // THEN
     EXPECT_EQ(false,   board.isPlaceEmpty(4));
@@ -127,6 +104,6 @@ TEST(TestingTestClass, TestIsInputValid)
     // THEN
     EXPECT_EQ(true,   board.isInputValid(4));
 
-   board.setGamePoints(2);
+    board.setGameCoins(2);
     EXPECT_EQ(false,   board.isInputValid(2));
 }

@@ -1,6 +1,3 @@
-//
-// Created by Clemens Hanselmann on 17.05.23.
-//
 #include "dummy/FourWinsSetup.hpp"
 #include <iostream>
 using namespace std;
@@ -9,10 +6,12 @@ void FourWinsSetup::switchPlayer()
 {
     m_playersTurn ^= 1;
 }
+
 int FourWinsSetup::getPlayersTurn() const
 {
     return m_playersTurn;
 }
+
 void FourWinsSetup::initField()
 {
     for(int i=0; i<m_rowLenght;i++)
@@ -29,7 +28,7 @@ char FourWinsSetup::getFieldAtPosition(int row, int column)
     return m_field[row][column];
 }
 
-void FourWinsSetup::setGamePoints(int column)
+void FourWinsSetup::setGameCoins(int column)
 {
     if(isPlaceEmpty(column))
     {
@@ -37,11 +36,11 @@ void FourWinsSetup::setGamePoints(int column)
         {
         case 0:
             m_field[getNextFreeRow(column)][column] = m_symbolPlayerO;
-            setRow(column);
+            CountRowVariableDown(column);
             break ;
         case 1:
             m_field[getNextFreeRow(column)][column] = m_symbolPlayerX;
-            setRow(column);
+            CountRowVariableDown(column);
             break ;
         default:
             break ;
@@ -56,7 +55,7 @@ bool FourWinsSetup::isBoardFull()
     int cntGamePoints = 0;
     for(int i=0; i<(m_rowLenght); i++)
     {
-        if((getFieldAtPosition(0,i)!= emptyPlace)&&(getFieldAtPosition(1,i)!= emptyPlace)&&(getFieldAtPosition(2,i)!= emptyPlace)&&(getFieldAtPosition(3,i)!= emptyPlace)&&(getFieldAtPosition(4,i)!= emptyPlace)&&(getFieldAtPosition(5,i)!= emptyPlace)&&(getFieldAtPosition(6,i)!= emptyPlace))
+        if((getFieldAtPosition(0,i)!= EMPTY_PLACE)&&(getFieldAtPosition(1,i)!= EMPTY_PLACE)&&(getFieldAtPosition(2,i)!= EMPTY_PLACE)&&(getFieldAtPosition(3,i)!= EMPTY_PLACE)&&(getFieldAtPosition(4,i)!= EMPTY_PLACE)&&(getFieldAtPosition(5,i)!= EMPTY_PLACE)&&(getFieldAtPosition(6,i)!= EMPTY_PLACE))
         {
             cntGamePoints++;
         }
@@ -92,34 +91,9 @@ void FourWinsSetup::checkRowWin(int row)
     }
 }
 
-void FourWinsSetup::checkColumnWin(int column)
-{
-    if(column < m_columnLenght)
-    {
-        for(int i=0; i < m_rowLenght; i++)
-        {
-            if(m_field[i][column] == m_symbolPlayerO &&
-                m_field[i+1][column] == m_symbolPlayerO &&
-                m_field[i+2][column] == m_symbolPlayerO &&
-                m_field[i+3][column] == m_symbolPlayerO )
-            {
-                m_playerOWin = true;
-            }
-            if(m_field[i][column] == m_symbolPlayerX &&
-                m_field[i+1][column] == m_symbolPlayerX &&
-                m_field[i+2][column] == m_symbolPlayerX &&
-                m_field[i+3][column] == m_symbolPlayerX )
-            {
-                m_playerXWin = true;
-            }
-        }
-
-
-    }
-}
 void FourWinsSetup::checkLeftBottomToTopDiagWin()
 {
-    for(int i= m_rowLenght-1;i >= 3;i--)
+    for(int i= m_rowLenght-1; i >= 3;i--)
     {
         for(int j = 0;j <= m_columnLenght-4;j++)
         {
@@ -165,9 +139,9 @@ void FourWinsSetup::checkLeftTopToBottomDiagWin()
     }
 }
 
-void FourWinsSetup::checkVertical()
+void FourWinsSetup::checkVerticalWin()
 {
-    for(int i= 0;i<=m_rowLenght-4;i++)
+    for(int i= 0;i<m_rowLenght;i++)
     {
         for(int j=0;j<m_columnLenght;j++)
         {
@@ -188,11 +162,12 @@ void FourWinsSetup::checkVertical()
         }
     }
 }
-void FourWinsSetup::checkHori()
+
+void FourWinsSetup::checkHorizontalWin()
 {
     for(int i= 0;i < m_rowLenght;i++)
     {
-        for(int j=0;j<m_columnLenght-4;j++)
+        for(int j=0;j<m_columnLenght;j++)
         {
             if(m_field[i][j] == m_symbolPlayerO &&
                 m_field[i][j+1] == m_symbolPlayerO &&
@@ -212,7 +187,7 @@ void FourWinsSetup::checkHori()
     }
 }
 
-void FourWinsSetup::setRow(int column)
+void FourWinsSetup::CountRowVariableDown(int column)
 {
     switch (column)
     {
@@ -239,6 +214,7 @@ void FourWinsSetup::setRow(int column)
         break ;
     }
 }
+
 int FourWinsSetup::getNextFreeRow(int column)
 {
     int rowCntr =0;
@@ -267,15 +243,13 @@ int FourWinsSetup::getNextFreeRow(int column)
         break ;
     }
     return rowCntr;
-
 }
 
 bool FourWinsSetup::isPlaceEmpty(int column)
 {
-
     bool isPlaceEmpty = false;
 
-    if(m_field[getNextFreeRow(column)][column]== emptyPlace)
+    if(m_field[getNextFreeRow(column)][column]== EMPTY_PLACE)
     {
         isPlaceEmpty = true;
     }
@@ -285,9 +259,9 @@ bool FourWinsSetup::isPlaceEmpty(int column)
 void FourWinsSetup::printField()
 {
     cout <<' '<<' '<<0<<' '<<1<<' '<<2<<' '<<3<<' '<<4<<' '<<5<<' '<<6<<' '<<endl;
-    for(int i=0; i<m_rowLenght;i++)
+    for(int i = 0; i<m_rowLenght; i++)
     {
-        cout<< i<<grid << m_field[i][0] << grid << m_field[i][1] << grid <<  m_field[i][2] << grid <<  m_field[i][3] << grid <<  m_field[i][4] <<grid <<  m_field[i][5] << grid <<  m_field[i][6] << grid <<endl;
+        cout<< i<< GRID << m_field[i][0] << GRID << m_field[i][1] << GRID <<  m_field[i][2] << GRID <<  m_field[i][3] << GRID <<  m_field[i][4] << GRID <<  m_field[i][5] << GRID <<  m_field[i][6] << GRID <<endl;
     }
     cout<<endl;
 }
@@ -302,48 +276,46 @@ bool FourWinsSetup::isInputValid( int column)
     return isInputValid;
 }
 
-void FourWinsSetup::enterColumn()
+void FourWinsSetup::setPlayersColumn()
 {
-    int name = 0;
-    if(m_playersTurn==0)
-    {
-        name = 1;
-    }
-    if(m_playersTurn==1)
-    {
-        name = 2;
-    }
-
-
-    cout <<"Player:" << name << " enter column please" << endl;
-    cin >> m_playersColumn;
+    printEnterPlayersColumn();
     if(isInputValid(m_playersColumn))
     {
-        setGamePoints(m_playersColumn);
-
+        setGameCoins(m_playersColumn);
     }
     else
     {
-        cout <<"ERROR enter row and column again...."<< endl;
-        enterColumn();
-
+        cout <<"ERROR: enter column again...."<< endl;
+       setPlayersColumn();
     }
+}
+
+void FourWinsSetup::printEnterPlayersColumn()
+{
+    char name = 'E';
+    if(m_playersTurn == 0)
+    {
+        name = m_symbolPlayerO;
+    }
+    if(m_playersTurn == 1)
+    {
+        name = m_symbolPlayerX;
+    }
+
+    cout <<"Player " << name << " enter column please" << endl;
+    cin >> m_playersColumn;
 }
 
 void FourWinsSetup::checkAllWinConditions()
 {
-    for(int i=0; i<m_columnLenght;i++)
-    {
-        checkColumnWin(i);
-    }
     for(int i=0; i<m_rowLenght;i++)
     {
         checkRowWin(i);
     }
     checkLeftBottomToTopDiagWin();
     checkLeftTopToBottomDiagWin();
-    checkVertical();
-    checkHori();
+    checkVerticalWin();
+    checkHorizontalWin();
 }
 
 void FourWinsSetup::getWinner()
@@ -361,18 +333,14 @@ void FourWinsSetup::getWinner()
     {
         std::cout <<"draw: no one wins"<<std::endl;
     }
-
 }
+
 bool FourWinsSetup::isPlayerXWin() const
 {
     return m_playerXWin;
 }
+
 bool FourWinsSetup::isPlayerOWin() const
 {
     return m_playerOWin;
 }
-int FourWinsSetup::getPlayersColumn() const
-{
-    return m_playersColumn;
-}
-

@@ -7,59 +7,63 @@
 class FourWinsSetup
 {
 public:
-    char getFieldAtPosition(int row,int column);
-    bool isBoardFull();
-    void setGamePoints(int column);
+
     void initField();
     void printField();
-    void enterColumn();
+    void printEnterPlayersColumn();
+    void setPlayersColumn();
+    void setGameCoins(int column);
     void switchPlayer();
 
-    void checkColumnWin(int column);
+    /* win conditions */
     void checkRowWin(int row);
-
-    void checkLeftBottomToTopDiagWin();    /* checks from top left to right down, if there is a diagonal win */
-    void checkLeftTopToBottomDiagWin();   /* checks from bottom left to right top, if there is a diagonal win */
-    void checkVertical();
-    void checkHori();
+    void checkLeftBottomToTopDiagWin();     /* checks from top left to right down, if there is a diagonal win */
+    void checkLeftTopToBottomDiagWin();     /* checks from bottom left to right top, if there is a diagonal win */
+    void checkVerticalWin();                   /* todo */
+    void checkHorizontalWin();                       /* todo */
 
     void checkAllWinConditions();
-    void getWinner();
+    void getWinner();                       /* print winner */
 
     bool isPlaceEmpty(int column);
     bool isInputValid(int column);
+    char getFieldAtPosition(int row,int column);
+    bool isBoardFull();
+
     bool isPlayerXWin() const;
     bool isPlayerOWin() const;
-    int getPlayersTurn() const;
-    int getNextFreeRow(int column);
-    void setRow(int column);
+    int getPlayersTurn() const;            /* 1 = player X
+                                            * 0 = player O */
 
-    const static char emptyPlace = '-';
-    const static char grid = '|';
+    int getNextFreeRow(int column);       /* this function returns the next free row as an int*/
+    void CountRowVariableDown(int column);
 
 private:
-    int m_playersTurn{0}; // 1 = player X , 0 = player O
-    const static int m_columnLenght {7};
-    const static int m_rowLenght {6};
+
+    /* variables for player */
+    int m_playersTurn{0};          // 1 = player X , 0 = player O
     const char m_symbolPlayerX = 'X';
     const char m_symbolPlayerO = 'O';
     bool m_playerXWin{false};
     bool m_playerOWin{false};
-    int m_playersRow{0};
     int m_playersColumn{0};
+
+    /* variables for field */
+    const static int m_columnLenght {7};
+    const static int m_rowLenght {6};
     char m_field[m_rowLenght][m_columnLenght];
-    int m_actualRowPosition;
-    int m_rowPosition0{m_columnLenght-1};
-    int m_rowPosition1{m_columnLenght-1};
-    int m_rowPosition2{m_columnLenght-1};
-    int m_rowPosition3{m_columnLenght-1};
-    int m_rowPosition4{m_columnLenght-1};
-    int m_rowPosition5{m_columnLenght-1};
-    int m_rowPosition6{m_columnLenght-1};
 
+    /* variables to count row positions of columns */
+    int m_rowPosition0{m_rowLenght};
+    int m_rowPosition1{m_rowLenght};
+    int m_rowPosition2{m_rowLenght};
+    int m_rowPosition3{m_rowLenght};
+    int m_rowPosition4{m_rowLenght};
+    int m_rowPosition5{m_rowLenght};
+    int m_rowPosition6{m_rowLenght};
 
-public:
-    int getPlayersColumn() const;
-    int getPlayersRow() const;
+    /* variables for visualization */
+    const static char EMPTY_PLACE = '-';
+    const static char GRID = '|';
 };
 #endif // DUMMY_FOURWINSSETUP_HPP

@@ -39,8 +39,8 @@ ENDIF()
 # all source files are to be placed in dummy/src.
 ####################################################################
 add_library(dummy_lib
-  ${CMAKE_SOURCE_DIR}/dummy/src/testClass.cpp
-        dummy/src/fourWins.cpp dummy/inc/dummy/fourWins.hpp dummy/src/FourWinsSetup.cpp dummy/inc/dummy/FourWinsSetup.hpp dummy/src/Player.cpp dummy/inc/dummy/Player.hpp dummy/inc/dummy/BotPlayer.hpp dummy/src/BotPlayer.cpp)
+  ${CMAKE_SOURCE_DIR}/
+        dummy/src/FourWinsSetup.cpp dummy/inc/dummy/FourWinsSetup.hpp dummy/inc/dummy/BotPlayer.hpp dummy/src/BotPlayer.cpp)
 target_include_directories(dummy_lib PUBLIC ${CMAKE_SOURCE_DIR}/dummy/inc)
 
 ####################################################################
@@ -56,8 +56,7 @@ target_link_libraries(main dummy_lib)
 # Add unit tests.
 ####################################################################
 add_executable(dummy_test
-  ${CMAKE_SOURCE_DIR}/dummy/test/dummytest.cpp
-  ${CMAKE_SOURCE_DIR}/dummy/test/unittest_testClass.cpp
-        dummy/test/UnitestBoard.cpp)
+
+  ${CMAKE_SOURCE_DIR}/dummy/test/UnitestBoard.cpp)
 target_link_libraries(dummy_test GTest::gtest_main dummy_lib)
 gtest_discover_tests(dummy_test)

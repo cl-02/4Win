@@ -22,3 +22,4 @@ ctest
 ```
 Open project in VS Code, navigate to main.cpp. 
 Select Run -> Start Debugging (F5). Then select Environment C++ GDB (GNU Debugger). Then g++.exe Create active file and debug.
+

@@ -46,29 +46,8 @@ cmake_ninja_workdir = /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRep
 
 build cmake_object_order_depends_target_dummy_lib: phony || CMakeFiles/dummy_lib.dir
 
-build CMakeFiles/dummy_lib.dir/dummy/src/testClass.cpp.o: CXX_COMPILER__dummy_lib_Debug /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/src/testClass.cpp || cmake_object_order_depends_target_dummy_lib
-  DEP_FILE = CMakeFiles/dummy_lib.dir/dummy/src/testClass.cpp.o.d
-  FLAGS = -Wall -std=c++14 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
-  INCLUDES = -I/Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/inc
-  OBJECT_DIR = CMakeFiles/dummy_lib.dir
-  OBJECT_FILE_DIR = CMakeFiles/dummy_lib.dir/dummy/src
-
-build CMakeFiles/dummy_lib.dir/dummy/src/fourWins.cpp.o: CXX_COMPILER__dummy_lib_Debug /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/src/fourWins.cpp || cmake_object_order_depends_target_dummy_lib
-  DEP_FILE = CMakeFiles/dummy_lib.dir/dummy/src/fourWins.cpp.o.d
-  FLAGS = -Wall -std=c++14 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
-  INCLUDES = -I/Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/inc
-  OBJECT_DIR = CMakeFiles/dummy_lib.dir
-  OBJECT_FILE_DIR = CMakeFiles/dummy_lib.dir/dummy/src
-
 build CMakeFiles/dummy_lib.dir/dummy/src/FourWinsSetup.cpp.o: CXX_COMPILER__dummy_lib_Debug /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/src/FourWinsSetup.cpp || cmake_object_order_depends_target_dummy_lib
   DEP_FILE = CMakeFiles/dummy_lib.dir/dummy/src/FourWinsSetup.cpp.o.d
-  FLAGS = -Wall -std=c++14 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
-  INCLUDES = -I/Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/inc
-  OBJECT_DIR = CMakeFiles/dummy_lib.dir
-  OBJECT_FILE_DIR = CMakeFiles/dummy_lib.dir/dummy/src
-
-build CMakeFiles/dummy_lib.dir/dummy/src/Player.cpp.o: CXX_COMPILER__dummy_lib_Debug /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/src/Player.cpp || cmake_object_order_depends_target_dummy_lib
-  DEP_FILE = CMakeFiles/dummy_lib.dir/dummy/src/Player.cpp.o.d
   FLAGS = -Wall -std=c++14 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   INCLUDES = -I/Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/inc
   OBJECT_DIR = CMakeFiles/dummy_lib.dir
@@ -89,7 +68,7 @@ build CMakeFiles/dummy_lib.dir/dummy/src/BotPlayer.cpp.o: CXX_COMPILER__dummy_li
 #############################################
 # Link the static library libdummy_lib.a
 
-build libdummy_lib.a: CXX_STATIC_LIBRARY_LINKER__dummy_lib_Debug CMakeFiles/dummy_lib.dir/dummy/src/testClass.cpp.o CMakeFiles/dummy_lib.dir/dummy/src/fourWins.cpp.o CMakeFiles/dummy_lib.dir/dummy/src/FourWinsSetup.cpp.o CMakeFiles/dummy_lib.dir/dummy/src/Player.cpp.o CMakeFiles/dummy_lib.dir/dummy/src/BotPlayer.cpp.o
+build libdummy_lib.a: CXX_STATIC_LIBRARY_LINKER__dummy_lib_Debug CMakeFiles/dummy_lib.dir/dummy/src/FourWinsSetup.cpp.o CMakeFiles/dummy_lib.dir/dummy/src/BotPlayer.cpp.o
   ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   LANGUAGE_COMPILE_FLAGS = -Wall -std=c++14 -g
   OBJECT_DIR = CMakeFiles/dummy_lib.dir
@@ -140,20 +119,6 @@ build main: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles/main.dir/main/src/main.
 
 build cmake_object_order_depends_target_dummy_test: phony || cmake_object_order_depends_target_dummy_lib cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main
 
-build CMakeFiles/dummy_test.dir/dummy/test/dummytest.cpp.o: CXX_COMPILER__dummy_test_Debug /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/test/dummytest.cpp || cmake_object_order_depends_target_dummy_test
-  DEP_FILE = CMakeFiles/dummy_test.dir/dummy/test/dummytest.cpp.o.d
-  FLAGS = -Wall -std=c++14 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -std=gnu++14
-  INCLUDES = -I/Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/inc -isystem /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/cmake-build-debug/_deps/googletest-src/googletest
-  OBJECT_DIR = CMakeFiles/dummy_test.dir
-  OBJECT_FILE_DIR = CMakeFiles/dummy_test.dir/dummy/test
-
-build CMakeFiles/dummy_test.dir/dummy/test/unittest_testClass.cpp.o: CXX_COMPILER__dummy_test_Debug /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/test/unittest_testClass.cpp || cmake_object_order_depends_target_dummy_test
-  DEP_FILE = CMakeFiles/dummy_test.dir/dummy/test/unittest_testClass.cpp.o.d
-  FLAGS = -Wall -std=c++14 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -std=gnu++14
-  INCLUDES = -I/Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/inc -isystem /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/cmake-build-debug/_deps/googletest-src/googletest
-  OBJECT_DIR = CMakeFiles/dummy_test.dir
-  OBJECT_FILE_DIR = CMakeFiles/dummy_test.dir/dummy/test
-
 build CMakeFiles/dummy_test.dir/dummy/test/UnitestBoard.cpp.o: CXX_COMPILER__dummy_test_Debug /Users/clemenshanselmann/Desktop/4Gewinnt/DummyCppCmakeRepo-main/dummy/test/UnitestBoard.cpp || cmake_object_order_depends_target_dummy_test
   DEP_FILE = CMakeFiles/dummy_test.dir/dummy/test/UnitestBoard.cpp.o.d
   FLAGS = -Wall -std=c++14 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -std=gnu++14
@@ -169,7 +134,7 @@ build CMakeFiles/dummy_test.dir/dummy/test/UnitestBoard.cpp.o: CXX_COMPILER__dum
 #############################################
 # Link the executable dummy_test
 
-build dummy_test dummy_test[1]_tests.cmake | ${cmake_ninja_workdir}dummy_test[1]_tests.cmake: CXX_EXECUTABLE_LINKER__dummy_test_Debug CMakeFiles/dummy_test.dir/dummy/test/dummytest.cpp.o CMakeFiles/dummy_test.dir/dummy/test/unittest_testClass.cpp.o CMakeFiles/dummy_test.dir/dummy/test/UnitestBoard.cpp.o | lib/libgtest_main.a libdummy_lib.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a libdummy_lib.a
+build dummy_test dummy_test[1]_tests.cmake | ${cmake_ninja_workdir}dummy_test[1]_tests.cmake: CXX_EXECUTABLE_LINKER__dummy_test_Debug CMakeFiles/dummy_test.dir/dummy/test/UnitestBoard.cpp.o | lib/libgtest_main.a libdummy_lib.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a libdummy_lib.a
   FLAGS = -Wall -std=c++14 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   LINK_LIBRARIES = lib/libgtest_main.a  libdummy_lib.a  lib/libgtest.a
   OBJECT_DIR = CMakeFiles/dummy_test.dir
